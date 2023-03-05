@@ -10,14 +10,14 @@ const App = () => {
   // Fetch characters from the API in an effect hook. Remember, anytime you have a
   // side effect in a component, you want to think about which state and/or props it should
   // sync up with, if any.
-  const [people, setPeople] = useState('')
+  const [people, setPeople] = useState([])
 
   useEffect(() => {
     axios.get('https://swapi.dev/api/people/').then((res) => {
       setPeople(res.data)
-      console.log(res, res.data)
+      console.log("success!" + res + res.data)
     })
-  }, [people])
+  }, [setPeople])
 
   return (
     <div className="App">
