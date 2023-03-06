@@ -50,29 +50,12 @@ const Karakter = ({ people, films, charMovies }) => {
                 <AccordionHeader targetId={movie} > <span className="text-uppercase" >{movie}</span> </AccordionHeader>
                 <AccordionBody accordionId={movie}>
                   <h6>{movie}</h6>
-                  <p>{movie.opening_crawl}</p>
+
                 </AccordionBody>
               </AccordionItem>
             </Accordion>
           ))}
         </div>
-
-        {/* <>
-          <div>
-            {charMovies && charMovies.map((movie, index) => (
-              <Accordion open={opener} toggle={toggler} key={index}>
-                <AccordionItem key={index}>
-                  <AccordionHeader targetId={movie} key={index}> <span class="text-uppercase" >{movie.title}</span> </AccordionHeader>
-                  <AccordionBody accordionId={movie} key={index}>
-                    <h6>{movie.title}</h6>
-
-                  </AccordionBody>
-                </AccordionItem>
-              </Accordion>
-            ))
-            }
-          </div>
-        </> */}
 
       </AccordionBody>
 
