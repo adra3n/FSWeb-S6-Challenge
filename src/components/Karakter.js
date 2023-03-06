@@ -11,7 +11,7 @@ import {
 
 
 
-const Karakter = ({ people, films, charMovies }) => {
+const Karakter = ({ people, movies, charMovies }) => {
 
   const [open, setOpen] = useState('1');
   const toggle = (id) => {
@@ -55,6 +55,23 @@ const Karakter = ({ people, films, charMovies }) => {
               </AccordionItem>
             </Accordion>
           ))}
+
+          {/* {people &&
+            people.films.map((movie) =>
+              movies.filter((e) => e.title.include(movie)).map((movieFiltered, index) =>
+
+                <Accordion open={opener} toggle={toggler} key={index} >
+                  <AccordionItem>
+                    <AccordionHeader targetId={movieFiltered} > <span className="text-uppercase" >{movieFiltered}</span> </AccordionHeader>
+                    <AccordionBody accordionId={movieFiltered}>
+                      <h6>{movieFiltered}</h6>
+                      <p>{movieFiltered.opening_crawl}</p>
+
+                    </AccordionBody>
+                  </AccordionItem>
+                </Accordion>
+              ))} */}
+
         </div>
 
       </AccordionBody>

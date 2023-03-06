@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-
-import Karakter from './components/Karakter'
 import Karakterler from './components/Karakterler'
 
 const App = () => {
@@ -13,6 +11,7 @@ const App = () => {
   // sync up with, if any.
   const [people, setPeople] = useState([]);
   const [movies, setMovies] = useState([]);
+  const [charMovies, setCharMovies] = useState([]);
 
   useEffect(() => {
     axios
@@ -24,7 +23,7 @@ const App = () => {
         setPeople(peopleRes.data)
         setMovies(filmsRes.data.results)
 
-        console.log("success!" + "films>" + filmsRes.data.map(e => console.log(e)))
+        console.log("success!" + "films>" + filmsRes.data.map(e => console.log(e)) + "people>" + peopleRes.data.map(e => console.log(e)))
       }))
       .catch(err =>
         console.log("err" + err)
@@ -38,7 +37,7 @@ const App = () => {
     <div className="App">
       <div>
         <h1>Karakterler</h1>
-        <Karakterler people={people} movies={movies} />
+        <Karakterler people={people} movies={movies} charMovies={charMovies} />
       </div>
     </div>
   );
