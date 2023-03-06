@@ -31,9 +31,10 @@ const Karakter = ({ people, films, charMovies }) => {
   };
 
   return <div>  <Accordion open={open} toggle={toggle} key={people.id}>
-    <AccordionItem key={people.id}>
-      <AccordionHeader targetId={people.name} key={people.id}  > {people.name} </AccordionHeader>
-      <AccordionBody accordionId={people.name} key={people.id}>
+    <AccordionItem>
+      <AccordionHeader targetId={people.name}> {people.name} </AccordionHeader>
+      <AccordionBody accordionId={people.name}>
+
         <h6>Gender: <span className="fw-normal" >{people.gender}</span></h6>
         <h6>Height:<span className="fw-normal" > {people.height}</span></h6>
         <h6>Mass:<span className="fw-normal" > {people.mass}</span></h6>
@@ -42,19 +43,20 @@ const Karakter = ({ people, films, charMovies }) => {
         <h6>Hair Color:<span className="fw-normal" > {people.hair_color}</span></h6>
         <h6>Skin Color:<span className="fw-normal" > {people.skin_color}</span></h6>
 
-
         <div>
           {people.films.map((movie, index) => (
             <Accordion open={opener} toggle={toggler} key={index}>
-              <AccordionItem key={index}>
-                <AccordionHeader targetId={movie} key={index}> <span class="text-uppercase" >{movie}</span> </AccordionHeader>
-                <AccordionBody accordionId={movie} key={index}>
+              <AccordionItem>
+                <AccordionHeader targetId={movie} > <span className="text-uppercase" >{movie}</span> </AccordionHeader>
+                <AccordionBody accordionId={movie}>
                   <h6>{movie}</h6>
+                  <p>{movie.opening_crawl}</p>
                 </AccordionBody>
               </AccordionItem>
             </Accordion>
           ))}
         </div>
+
         {/* <>
           <div>
             {charMovies && charMovies.map((movie, index) => (
@@ -71,6 +73,7 @@ const Karakter = ({ people, films, charMovies }) => {
             }
           </div>
         </> */}
+
       </AccordionBody>
 
     </AccordionItem>
