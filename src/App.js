@@ -1,8 +1,8 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
 import Karakter from './components/Karakter'
+import Karakterler from './components/Karakterler'
 
 const App = () => {
   // Try to think through what state you'll need for this app before starting. Then build out
@@ -13,34 +13,37 @@ const App = () => {
   // sync up with, if any.
   const [people, setPeople] = useState([]);
   const [films, setFilms] = useState([]);
-
+  const [charMovies, setCharMovies] = useState([]);
   useEffect(() => {
-    axios.get('https://swapi.dev/api/people/')
-      .then((res) => {
-        setPeople(res.data)
-        console.log("success!" + res + res.data)
-      })
+    axios
+      .all([axios.get('https://swapi.dev/api/people/'),
+      axios.get(`https://swapi.dev/api/films/`)
+      ])
+
+      .then(axios.spread((peopleRes, filmsRes) => {
+        setPeople(peopleRes.data)
+        setFilms(filmsRes.data)
+        // setCharMovies(films.filter((e) =>
+        //   people.films.includes(e.title)));
+        console.log("success!" + "people>" + peopleRes + peopleRes.data + "films>" + filmsRes)
+      }))
       .catch(err =>
-        console.log(err)
+        console.log("err" + err)
       )
-    axios.get(`https://swapi.dev/api/films/`)
-      .then((res) => {
-        setFilms(res.data);
-        console.log("success!" + res + res.data)
-      })
-      .catch(err =>
-        console.log(err)
-      )
+
   }, []);
+
+
 
   return (
     <div className="App">
-      <h1 className="Header">Karakterler</h1>
-      {people && people.map((people, i) => {
-        return (<Karakter key={i} people={people} films={films} />)
-      })}
+      <div>
+        <h1>Karakterler</h1>
+        <Karakterler people={people} charMovies={charMovies} films={films} />
+      </div>
     </div>
-  )
+  );
 }
 
 export default App;
+
